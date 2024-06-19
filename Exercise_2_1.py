@@ -18,11 +18,8 @@ v_boat = np.array([0, 36])  # Speed of 36 km/h perpendicular to river bank; so p
 # So, Propelled velocity is (boat velocity - water velocity)
 v_propelled = v_boat - v_river
 
-# Define arrow properties
-arrow_props = dict(mutation_scale=100, color='red')
-
 # Plot axes and labels
-plt.figure(figsize=(6, 6))  # Adjust figure size as needed 
+plt.figure(figsize=(6, 6))  # Adjust figure size in inches 
 plt.xlim(-15, 45)  # Set x-axis limits
 plt.ylim(-5, 45)  # Set y-axis limits
 plt.xlabel("X-axis (km/h)")
@@ -30,9 +27,9 @@ plt.ylabel("Y-axis (km/h)")
 plt.title("River, Boat, and Propelled Velocities")
 
 # Plot vectors as arrows
-plt.arrow(0, 0, *v_river, head_width=0.2, head_length=0.3, label="River Velocity", **arrow_props)
-plt.arrow(0, 0, *v_boat, head_width=0.2, head_length=0.3, label="Boat Velocity", **arrow_props)
-plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled Velocity", **arrow_props)
+plt.arrow(0, 0, *v_river, head_width=0.2, head_length=0.3, label="River Velocity", color='blue')
+plt.arrow(0, 0, *v_boat, head_width=0.2, head_length=0.3, label="Boat Velocity", color='blue')
+plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled Velocity", color='blue')
 
 # Speed of the propelled boat (magnitude of propelled velocity)
 norm_v_propelled = np.linalg.norm(v_propelled)
