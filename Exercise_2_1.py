@@ -25,6 +25,7 @@ plt.ylim(-5, 45)  # Set y-axis limits
 plt.xlabel("X-axis (km/h)")
 plt.ylabel("Y-axis (km/h)")
 plt.title("River, Boat, and Propelled Velocities")
+plt.grid(True) # Turn on the grid lines
 
 # Plot vectors as arrows
 plt.arrow(0, 0, *v_river, head_width=0.2, head_length=0.3, label="River Velocity", color='blue')
