@@ -27,16 +27,21 @@ sum_vector = np.zeros_like(v_a)  # Same shape and data type as v_a
 
 # Tuples of vectors and their names
 vectors = (v_a, v_b, v_c, v_d)
-vector_names = ('a', 'b', 'c', 'd') 
+vector_names = ('a', 'b', 'c', 'd')
+vector_colors = ('red', 'blue', 'green', 'brown')
 
 # Calculate the sum of all the vectors
-for v, name in zip(vectors, vector_names):
-  plt.arrow(*sum_vector, *v, head_width=0.2, head_length=0.3, label=name, color='red')
+for v, name, color in zip(vectors, vector_names, vector_colors):
+  plt.arrow(*sum_vector, *v, head_width=0.2, head_length=0.3, label=name, color=color, length_includes_head=True)
   sum_vector += v
 
 # Calculate the magnitude of the sum
-norm_sum = np.linalg.norm(sum)
+norm_sum = np.linalg.norm(sum_vector)
 
 # Print the results
 print('The sum of vectors a, b, d and d is:', sum_vector)
 print('The magnitude of this sum is:', norm_sum)
+
+# Display the plot
+plt.legend()
+plt.show()
