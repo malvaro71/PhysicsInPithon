@@ -1,2 +1,26 @@
 # Draw, one after the other, the vectors a=<2, 3>, b=<4, -2>, c=<3, -2> and d=<-9, 1>. 
 # Calculate the vector resulting from the sum of all of them and its magnitude. 
+
+# Import matplotlib to plot problem vectors
+import matplotlib.pyplot as plt
+# Import numpy for vector calculations
+import numpy as np
+
+# Exercise data (vector values)
+v_a = np.array([2, 3]) 
+v_b = np.array([4, -2])
+v_c = np.array([3, -2])
+v_d = np.array([-9, 1])
+
+# Initialize a variable to store the sum
+sum_vector = np.zeros_like(v_a)  # Same shape and data type as v_a
+
+# Calculate the sum of all the vectors
+for v in [v_a, v_b, v_c, v_d]:
+  sum_vector += v
+
+# Calculate the magnitude of the sum
+norm_sum = np.linalg.norm(sum)
+# Print the results
+print('The sum of vectors a, b, d and d is:', sum_vector)
+print('The magnitude of this sum is:', norm_sum)
