@@ -61,8 +61,12 @@ plt.grid(True) # Turn on the grid lines
 
 # Plot vectors as arrows
 plt.arrow(0, 0, *v_river, head_width=0.2, head_length=0.3, label="River Velocity", color='blue')
-plt.arrow(0, 0, *v_boat, head_width=0.2, head_length=0.3, label="Boat Velocity", color='blue')
-plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled Velocity", color='blue')
+plt.arrow(0, 0, *v_boat, head_width=0.2, head_length=0.3, label="Boat Velocity", color='green')
+plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled Velocity", color='red')
 
 # Plot angle phi
-plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi:.2f} radians", ha='center', va='center')  # Place angle text
+plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi_deg:.0f} degrees", ha='center', va='center')  # Place angle text
+
+# Display the plot
+plt.legend()
+plt.show()
