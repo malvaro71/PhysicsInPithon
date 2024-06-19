@@ -18,20 +18,6 @@ v_boat = np.array([0, 36])  # Speed of 36 km/h perpendicular to river bank; so p
 # So, Propelled velocity is (boat velocity - water velocity)
 v_propelled = v_boat - v_river
 
-# Plot axes and labels
-plt.figure(figsize=(6, 6))  # Adjust figure size in inches 
-plt.xlim(-15, 45)  # Set x-axis limits
-plt.ylim(-5, 45)  # Set y-axis limits
-plt.xlabel("X-axis (km/h)")
-plt.ylabel("Y-axis (km/h)")
-plt.title("River, Boat, and Propelled Velocities")
-plt.grid(True) # Turn on the grid lines
-
-# Plot vectors as arrows
-plt.arrow(0, 0, *v_river, head_width=0.2, head_length=0.3, label="River Velocity", color='blue')
-plt.arrow(0, 0, *v_boat, head_width=0.2, head_length=0.3, label="Boat Velocity", color='blue')
-plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled Velocity", color='blue')
-
 # Speed of the propelled boat (magnitude of propelled velocity)
 norm_v_propelled = np.linalg.norm(v_propelled)
 
@@ -54,9 +40,8 @@ def angle_between_vectors_ccw(v1, v2):
   radians = np.arccos(dot_product / mag_product)
   return radians
 
-# Calculate and plot angle phi
+# Calculate angle phi
 phi = angle_between_vectors_ccw(v_river, v_propelled)
-plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi:.2f} radians", ha='center', va='center')  # Place angle text
 
 # Convert angle to degrees (optional)
 phi_deg = np.degrees(phi)
@@ -64,3 +49,20 @@ phi_deg = np.degrees(phi)
 # Print the results
 print(f"Speed of the propelled boat: {norm_v_propelled:.2f} km/h")
 print(f"Direction: {phi_deg:.2f} degrees counter-clockwise from the riverbank")
+
+# Plot axes and labels
+plt.figure(figsize=(6, 6))  # Adjust figure size in inches 
+plt.xlim(-15, 45)  # Set x-axis limits
+plt.ylim(-5, 45)  # Set y-axis limits
+plt.xlabel("X-axis (km/h)")
+plt.ylabel("Y-axis (km/h)")
+plt.title("River, Boat, and Propelled Velocities")
+plt.grid(True) # Turn on the grid lines
+
+# Plot vectors as arrows
+plt.arrow(0, 0, *v_river, head_width=0.2, head_length=0.3, label="River Velocity", color='blue')
+plt.arrow(0, 0, *v_boat, head_width=0.2, head_length=0.3, label="Boat Velocity", color='blue')
+plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled Velocity", color='blue')
+
+# Plot angle phi
+plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi:.2f} radians", ha='center', va='center')  # Place angle text
