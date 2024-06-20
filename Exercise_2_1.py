@@ -51,6 +51,7 @@ plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi:.0f} degrees", ha='cente
 
 # Create and draw the angle arc
 fig, ax = plt.subplots()
+# Reference: https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Arc.html
 arc = matplotlib.patches.Arc(xy=(0, 0), 
                              width=2 * radius,  # Diameter of the arc
                              height=2 * radius,
