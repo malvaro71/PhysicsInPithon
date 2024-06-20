@@ -21,34 +21,13 @@ v_propelled = v_boat - v_river
 # Speed of the propelled boat (magnitude of propelled velocity)
 norm_v_propelled = np.linalg.norm(v_propelled)
 
-def angle_between_vectors_ccw(v1, v2):
-  """
-  Calculates the angle between two vectors in counter-clockwise direction.
-
-  Args:
-      v1 (numpy.ndarray): The first vector.
-      v2 (numpy.ndarray): The second vector.
-
-  Returns:
-      float: The angle between the two vectors in radians.
-
-  This function calculates the angle between two vectors `v1` and `v2` using the dot product 
-  and arccosine formulas. The angle is measured in counter-clockwise direction from `v1` to `v2`.
-  """
-  dot_product = np.dot(v1, v2)
-  mag_product = np.linalg.norm(v1) * np.linalg.norm(v2)
-  radians = np.arccos(dot_product / mag_product)
-  return radians
-
-# Calculate angle phi
-phi = angle_between_vectors_ccw(v_river, v_propelled)
-
-# Convert angle to degrees (optional)
-phi_deg = np.degrees(phi)
+# Calculate angle phi, in degrees, between x-axis and v_propelled
+# Reference: https://numpy.org/doc/stable/reference/generated/numpy.arctan2.html
+phi = np.degrees(np.arctan2(v_propelled[1], v_propelled[0]))
 
 # Print the results
 print(f"Speed of the propelled boat: {norm_v_propelled:.2f} km/h")
-print(f"Direction: {phi_deg:.2f} degrees counter-clockwise from the riverbank")
+print(f"Direction: {phi:.2f} degrees counter-clockwise from the riverbank")
 
 # Plot axes and labels
 plt.figure(figsize=(6, 6))  # Adjust figure size in inches 
@@ -68,7 +47,19 @@ plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled 
           length_includes_head=True)
 
 # Place angle text
-plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi_deg:.0f} degrees", ha='center', va='center')  
+plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi:.0f} degrees", ha='center', va='center')
+
+# Create and draw the angle arc
+fig, ax = plt.subplots()
+arc = matplotlib.patches.Arc(xy=(0, 0), 
+                             width=2 * radius,  # Diameter of the arc
+                             height=2 * radius,
+                             angle=0,  # Starting angle from 0 degrees (optional)
+                             theta1=0,  # Starting angle of the arc is at x-axis
+                             theta2=phi,   # Ending angle of the arc is phi; calculated earlier
+                             linewidth=2)
+ax.add_patch(arc)
+ax.set_aspect('equal')  # Ensure equal aspect ratio for circle
 
 # Display the plot
 plt.legend()
