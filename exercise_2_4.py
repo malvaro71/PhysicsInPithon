@@ -16,6 +16,6 @@ velocity_y = magnitude*np.sin(np.radians(direction))
 velocity = np.array([velocity_x, velocity_y])
 
 # Print velocity components and velocity vector
-print('The horizontal component of the object velocity is', velocity_x, 'm/s')
-print('The vertical component of the object velocity is', velocity_y, 'm/s')
-print('The object velocity vector is', velocity, 'm/s')
+print(f'The horizontal component of the object velocity is {velocity_x:.2f} m/s')
+print(f'The vertical component of the object velocity is {velocity_y:.2f} m/s')
+print(f'The object velocity vector is {velocity} m/s')

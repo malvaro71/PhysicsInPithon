@@ -12,5 +12,5 @@ sailboat_speed_x = sailboat_speed * math.cos(3 * math.pi / 8) # x-component of t
 sailboat_speed_y = sailboat_speed * math.sin(3 * math.pi / 8) # y-component of the sailboat speed
 
 # Print results
-print('The x-component of sailboat speed is:', sailboat_speed_x)
-print('The y-component of sailboat speed is:', sailboat_speed_y)
+print(f'The x-component of sailboat speed is: {sailboat_speed_x:.2f} Km/h')
+print(f'The y-component of sailboat speed is: {sailboat_speed_y:.2f} Km/h')

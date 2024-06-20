@@ -6,6 +6,8 @@
 
 # Import matplotlib to plot problem vectors
 import matplotlib.pyplot as plt
+# Import patches from matplotlib
+from matplotlib import patches
 # Import numpy for vector calculations
 import numpy as np
 
@@ -49,18 +51,18 @@ plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled 
 # Place angle text
 plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi:.0f} degrees", ha='center', va='center')
 
-# Create and draw the angle arc
-fig, ax = plt.subplots()
-# Reference: https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Arc.html
-arc = matplotlib.patches.Arc(xy=(0, 0), 
-                             width=2 * radius,  # Diameter of the arc
-                             height=2 * radius,
-                             angle=0,  # Starting angle from 0 degrees (optional)
-                             theta1=0,  # Starting angle of the arc is at x-axis
-                             theta2=phi,   # Ending angle of the arc is phi; calculated earlier
-                             linewidth=2)
-ax.add_patch(arc)
-ax.set_aspect('equal')  # Ensure equal aspect ratio for circle
+# Create an elliptic arc with equal width and height (circle)
+arc = patches.Arc((0, 0),
+				    width=4,    # Diameter of the arc
+				    height= 4, 
+					angle=0,    # Starting angle from 0 degrees (optional)
+                    theta1=0,   # Starting angle of the arc is at x-axis
+					theta2=phi, # Ending angle of the arc is phi; calculated earlier
+					linewidth=2,
+					color='red')
+
+# Add the arc to the plot using plt.add_patch
+plt.add_patch(arc)
 
 # Display the plot
 plt.legend()
