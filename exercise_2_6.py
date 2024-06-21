@@ -10,4 +10,4 @@ airplane_speed = 600 # Km/h
 speed_proy_E = airplane_speed * math.cos(math.pi / 4) # Angle from E to NE is PI/4 radians
 
 # Print the result
-print(f'The projection of airplane velocity')
+print(f'The projection of airplane velocity onto the east direction is {speed_proy_E} Km/h')
