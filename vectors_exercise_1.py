@@ -1,8 +1,8 @@
 # Exercise 2_1
 # A boatman is rowing on the boat, wanting to always stay perpendicular to the
-# river bank and crossing with an average speed of 36 km / h. The river water 
-# flows with a speed of 9 km / h. How fast should the boat be propelled? 
-# In what direction? 
+# river bank and crossing with an average speed of 36 km / h. The river water
+# flows with a speed of 9 km / h. How fast should the boat be propelled?
+# In what direction?
 
 # Import matplotlib to plot problem vectors
 import matplotlib.pyplot as plt
@@ -13,15 +13,12 @@ from matplotlib import patches
 # Import numpy for vector calculations
 import numpy as np
 
-# Import FancyArrowPatch from matplotlib.patches
-from matplotlib import patches
-
-# set the cartesian plane whith the river bank parallel to x-axis. 
+# set the cartesian plane whith the river bank parallel to x-axis.
 # Exercise data
-v_r = np.array([9, 0])  # Water velocity parallel to x-axis (km/h)
-v_b = np.array([0, 36])  # Speed of 36 km/h perpendicular to river bank; so parallel to y-axis.
+v_r = np.array([9, 0])  # Water velocity parallel to x-axis (km/h).
+v_b = np.array([0, 36])  # Speed of 36 km/h perpendicular to river bank.
 
-# Velocity of the boat is the sum of water velocity and propelled velocity. 
+# Velocity of the boat is the sum of water velocity and propelled velocity.
 # So, Propelled velocity is (boat velocity - water velocity)
 v_p = v_b - v_r
 
@@ -30,12 +27,13 @@ norm_v_propelled = np.linalg.norm(v_p)
 
 # Calculate angle phi, in degrees, between x-axis and v_propelled
 phi = np.arctan2(v_p[1], v_p[0])
-# Reference: https://numpy.org/doc/stable/reference/generated/numpy.arctan2.html
+# Ref: https://numpy.org/doc/stable/reference/generated/numpy.arctan2.html
 phi_degrees = np.degrees(phi)
 
 # Print the results
 print(f"Speed of the propelled boat: {norm_v_propelled:.2f} km/h")
-print(f"Direction: {phi_degrees:.2f} degrees counter-clockwise from the riverbank")
+print(f"Direction: {phi_degrees:.2f} degrees"
+      "counter-clockwise from the riverbank")
 
 # Create a figure and axes object
 fig, ax = plt.subplots(figsize=(6, 6))  # Adjust figure size in inches
