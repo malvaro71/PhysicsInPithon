@@ -14,4 +14,4 @@ r = np.array([2, -2, 1])
 v = np.linalg.cross(w, r)
 
 # Print the result
-print(f'The lineal velocity vector of the point P is {v:.2f}')
+print(f'The lineal velocity vector of the point P is ({v[0]:.2f}, {v[1]:.2f}, {v[2]:.2f})')
