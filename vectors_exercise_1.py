@@ -52,18 +52,23 @@ ax.grid(True)
 
 # Plot vectors as arrows using object-oriented approach
 # Plot the vectors
-ax.arrow(0, 0, v_r[0], v_r[1], head_width=1, head_length=1, fc='blue', ec='blue',label='River Velocity')
-ax.arrow(0, 0, v_b[0], v_b[1], head_width=1, head_length=1, fc='red', ec='red', label='Boat Velocity')
-ax.arrow(0, 0, v_p[0], v_p[1], head_width=1, head_length=1, fc='green', ec='green', label='Propelled Velocity')
+ax.arrow(0, 0, v_r[0], v_r[1], head_width=1, head_length=1, fc='blue',
+         ec='blue', label='River Velocity')
+ax.arrow(0, 0, v_b[0], v_b[1], head_width=1, head_length=1, fc='red',
+         ec='red', label='Boat Velocity')
+ax.arrow(0, 0, v_p[0], v_p[1], head_width=1, head_length=1, fc='green',
+         ec='green', label='Propelled Velocity')
 
 # Plot the arc using patches.Arc with object-oriented approach
-arc = patches.Arc((0, 0), width=4, height=4, angle=0, 
-                   theta1=0, theta2=phi_degrees, linewidth=2, color='red')
+arc = patches.Arc((0, 0), width=4, height=4, angle=0,
+                  theta1=0, theta2=phi_degrees, linewidth=2, color='red')
 ax.add_patch(arc)  # Add arc to the axes
 
 # Place angle text on the plot
-ax.text(2*np.cos(phi/2), 2*np.sin(phi/2), f"{phi_degrees:.0f} degrees", ha='left', va='bottom')
-ax.text(norm_v_propelled/2*np.cos(phi), norm_v_propelled/2*np.sin(phi), f"{norm_v_propelled:.0f} Km/h ", ha='right', va='bottom')
+ax.text(2*np.cos(phi/2), 2*np.sin(phi/2), f"{phi_degrees:.0f} degrees",
+        ha='left', va='bottom')
+ax.text(norm_v_propelled/2*np.cos(phi), norm_v_propelled/2*np.sin(phi),
+        f"{norm_v_propelled:.0f} Km/h ", ha='right', va='bottom')
 
 # Add legend
 ax.legend()
