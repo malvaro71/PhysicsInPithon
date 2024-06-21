@@ -1,4 +1,5 @@
-# Find the scalar product of the vectors (5, −3, 2), (−2, 1, 3) and the angle they form. 
+# Find the scalar product of the vectors (5, −3, 2), (−2, 1, 3) and the angle
+# they form.
 
 # Import numpy
 import numpy as np
@@ -14,5 +15,7 @@ scalar_product = np.dot(a, b)
 angle = np.arccos(scalar_product/(np.linalg.norm(a)*np.linalg.norm(b)))
 
 # Print the results
-print(f'The scalar product of the vectors (5, −3, 2), (−2, 1, 3) is {scalar_product}')
-print(f'the angle in radians formed by (5, −3, 2) and (−2, 1, 3) is {angle:.2f} radians')
+print('The scalar product of the vectors (5, −3, 2), (−2, 1, 3) is'
+      f' {scalar_product:.2f}')
+print('the angle in radians formed by (5, −3, 2) and (−2, 1, 3) is'
+      ' {angle:.2f} radians')
