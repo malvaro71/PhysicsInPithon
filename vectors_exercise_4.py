@@ -18,4 +18,4 @@ velocity = np.array([velocity_x, velocity_y])
 # Print velocity components and velocity vector
 print(f'The horizontal component of the object velocity is {velocity_x:.2f} m/s')
 print(f'The vertical component of the object velocity is {velocity_y:.2f} m/s')
-print(f'The object velocity vector is {velocity} m/s')
+print(f'The object velocity vector is ({velocity[0]:.2f}, {velocity[1]:.2f}) m/s')
