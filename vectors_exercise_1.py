@@ -6,64 +6,70 @@
 
 # Import matplotlib to plot problem vectors
 import matplotlib.pyplot as plt
+
 # Import patches from matplotlib
 from matplotlib import patches
+
 # Import numpy for vector calculations
 import numpy as np
 
+# Import FancyArrowPatch from matplotlib.patches
+from matplotlib import patches
+
 # set the cartesian plane whith the river bank parallel to x-axis. 
 # Exercise data
-v_river = np.array([9, 0])  # Water velocity parallel to x-axis (km/h)
-v_boat = np.array([0, 36])  # Speed of 36 km/h perpendicular to river bank; so parallel to y-axis.
+v_r = np.array([9, 0])  # Water velocity parallel to x-axis (km/h)
+v_b = np.array([0, 36])  # Speed of 36 km/h perpendicular to river bank; so parallel to y-axis.
 
 # Velocity of the boat is the sum of water velocity and propelled velocity. 
 # So, Propelled velocity is (boat velocity - water velocity)
-v_propelled = v_boat - v_river
+v_p = v_b - v_r
 
 # Speed of the propelled boat (magnitude of propelled velocity)
-norm_v_propelled = np.linalg.norm(v_propelled)
+norm_v_propelled = np.linalg.norm(v_p)
 
 # Calculate angle phi, in degrees, between x-axis and v_propelled
+phi = np.arctan2(v_p[1], v_p[0])
 # Reference: https://numpy.org/doc/stable/reference/generated/numpy.arctan2.html
-phi = np.degrees(np.arctan2(v_propelled[1], v_propelled[0]))
+phi_degrees = np.degrees(phi)
 
 # Print the results
 print(f"Speed of the propelled boat: {norm_v_propelled:.2f} km/h")
-print(f"Direction: {phi:.2f} degrees counter-clockwise from the riverbank")
+print(f"Direction: {phi_degrees:.2f} degrees counter-clockwise from the riverbank")
 
-# Plot axes and labels
-plt.figure(figsize=(6, 6))  # Adjust figure size in inches 
-plt.xlim(-15, 45)  # Set x-axis limits
-plt.ylim(-5, 45)  # Set y-axis limits
-plt.xlabel("X-axis (km/h)")
-plt.ylabel("Y-axis (km/h)")
-plt.title("River, Boat, and Propelled Velocities")
-plt.grid(True) # Turn on the grid lines
+# Create a figure and axes object
+fig, ax = plt.subplots(figsize=(6, 6))  # Adjust figure size in inches
 
-# Plot vectors as arrows
-plt.arrow(0, 0, *v_river, head_width=0.2, head_length=0.3, label="River Velocity", color='blue', 
-          length_includes_head=True)
-plt.arrow(0, 0, *v_boat, head_width=0.2, head_length=0.3, label="Boat Velocity", color='green', 
-          length_includes_head=True)
-plt.arrow(0, 0, *v_propelled, head_width=0.2, head_length=0.3, label="Propelled Velocity", color='red', 
-          length_includes_head=True)
+# Set x and y axis limits
+ax.set_xlim(-15, 45)
+ax.set_ylim(-5, 45)
 
-# Place angle text
-plt.text(v_propelled[0] / 2, v_propelled[1] / 2, f"{phi:.0f} degrees", ha='center', va='center')
+# Set axis labels
+ax.set_xlabel("X-axis (km/h)")
+ax.set_ylabel("Y-axis (km/h)")
+ax.set_title("River, Boat, and Propelled Velocities")
 
-# Create an elliptic arc with equal width and height (circle)
-arc = patches.Arc((0, 0),
-				    width=4,    # Diameter of the arc
-				    height= 4, 
-					angle=0,    # Starting angle from 0 degrees (optional)
-                    theta1=0,   # Starting angle of the arc is at x-axis
-					theta2=phi, # Ending angle of the arc is phi; calculated earlier
-					linewidth=2,
-					color='red')
+# Turn on the grid lines
+ax.grid(True)
 
-# Add the arc to the plot using plt.add_patch
-plt.add_patch(arc)
+# Plot vectors as arrows using object-oriented approach
+# Plot the vectors
+ax.arrow(0, 0, v_r[0], v_r[1], head_width=1, head_length=1, fc='blue', ec='blue',label='River Velocity')
+ax.arrow(0, 0, v_b[0], v_b[1], head_width=1, head_length=1, fc='red', ec='red', label='Boat Velocity')
+ax.arrow(0, 0, v_p[0], v_p[1], head_width=1, head_length=1, fc='green', ec='green', label='Propelled Velocity')
+
+# Plot the arc using patches.Arc with object-oriented approach
+arc = patches.Arc((0, 0), width=4, height=4, angle=0, 
+                   theta1=0, theta2=phi_degrees, linewidth=2, color='red')
+ax.add_patch(arc)  # Add arc to the axes
+
+# Place angle text on the plot
+ax.text(2*np.cos(phi/2), 2*np.sin(phi/2), f"{phi_degrees:.0f} degrees", ha='left', va='bottom')
+ax.text(norm_v_propelled/2*np.cos(phi), norm_v_propelled/2*np.sin(phi), f"{norm_v_propelled:.0f} Km/h ", ha='right', va='bottom')
+
+# Add legend
+ax.legend()
 
 # Display the plot
-plt.legend()
 plt.show()
+plt.legend()
